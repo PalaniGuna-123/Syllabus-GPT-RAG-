@@ -11,3 +11,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+def main():
+    print("Main Function ")
+    
+if __name__ == "__main__":
+    main()
+
+    
