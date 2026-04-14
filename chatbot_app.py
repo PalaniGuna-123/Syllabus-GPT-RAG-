@@ -19,8 +19,15 @@ load_dotenv()
 # --- Configuration and Initialization ---
 
 # Set Groq API Key
-if "GROQ_API_KEY" not in os.environ:
-    os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
+groq_key = os.getenv("GROQ_API_KEY")
+if not groq_key:
+    st.error("GROQ_API_KEY not found. Please set it in the .env file.")
+    st.stop()
+
+os.environ["GROQ_API_KEY"] = groq_key
+
+# if "GROQ_API_KEY" not in os.environ:
+#     os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
 
 # Initialize embeddings model
 def get_embeddings_model():
@@ -83,8 +90,8 @@ app = get_langgraph_app()
 
 # --- Streamlit UI Setup ---
 
-st.set_page_config(page_title="Academic QA", layout="centered")
-st.title("💬 Academic QA")
+st.set_page_config(page_title="Syllabus-GPT", layout="centered")
+st.title("💬 Syllabus-GPT")
 
 # Initialize session state for messages and thread ID
 if "messages" not in st.session_state:

@@ -7,10 +7,8 @@ class Config:
 
     # --- YouTube Configuration ---
     # URL of the YouTube video to be processed.
-    YOUTUBE_VIDEO_URL: str = "https://www.youtube.com/watch?v=uFhDGagZzjs"
     
     # Directory where downloaded YouTube audio files will be saved.
-    YOUTUBE_AUDIO_SAVE_DIRECTORY: str = "docs/youtube/"
 
     # --- PDF Configuration ---
     # Directory where source PDF documents are located.

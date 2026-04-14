@@ -1,40 +1,12 @@
 import os
 
-from langchain.document_loaders.generic import GenericLoader
 from langchain_community.document_loaders.parsers.audio import FasterWhisperParser
-from langchain.document_loaders.blob_loaders.youtube_audio import YoutubeAudioLoader
-
-from langchain.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma   
 
 from config import config
-
-def load_youtube_content(url: str, save_dir: str):
-    """
-    Loads audio from a YouTube URL, transcribes it using FasterWhisperParser,
-    and returns the loaded documents.
-
-    Args:
-        url (str): The URL of the YouTube video.
-        save_dir (str): Directory to save the audio files temporarily.
-
-    Returns:
-        list: A list of documents loaded from the YouTube content.
-    """
-    print(f"Starting YouTube content loading from: {url}")
-    try:
-        loader = GenericLoader(
-            YoutubeAudioLoader([url], save_dir),
-            FasterWhisperParser()
-        )
-        youtube_docs = loader.load()
-        print(f"Successfully loaded {len(youtube_docs)} documents from YouTube.")
-        return youtube_docs
-    except Exception as e:
-        print(f"Error loading YouTube content from {url}: {e}")
-        return []
 
 def load_pdf_content(pdf_directory: str):
     """
